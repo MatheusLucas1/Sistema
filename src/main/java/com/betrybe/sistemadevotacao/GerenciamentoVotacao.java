@@ -1,12 +1,17 @@
 package com.betrybe.sistemadevotacao;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
+/**
+ * Classe responsável por gerenciar o processo de votação.
+ */
 public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
 
-  private ArrayList<PessoaCandidata> pessoasCandidatas = new ArrayList<>();
-  private ArrayList<PessoaEleitora> pessoasEleitoras = new ArrayList<>();
-  private ArrayList<String> cpfsComputados = new ArrayList<>();
+
+  private ArrayList<PessoaCandidata> pessoasCandidatas = new ArrayList<PessoaCandidata>();
+  private ArrayList<PessoaEleitora> pessoasEleitoras = new ArrayList<PessoaEleitora>();
+  private ArrayList<String> cpfsComputados = new ArrayList<String>();
 
   @Override
   public void cadastrarPessoaCandidata(String nome, int numero) {
@@ -37,20 +42,38 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
   @Override
   public void votar(String cpfPessoaEleitora, int numeroPessoaCandidata) {
     for (String cpfComputado : cpfsComputados) {
-      if (cpfComputado.equals(cpfPessoaEleitora)) {
+      if (Objects.equals(cpfComputado, cpfPessoaEleitora)) {
         System.out.println("Pessoa eleitora já votou!");
         return;
       }
     }
 
     for (PessoaCandidata pessoaCandidata : pessoasCandidatas) {
-      
+      if (pessoaCandidata.getNumero() == numeroPessoaCandidata) {
+        pessoaCandidata.receberVoto();
+      }
     }
+
+    cpfsComputados.add(cpfPessoaEleitora);
 
   }
 
   @Override
   public void mostrarResultado() {
+    if (cpfsComputados.isEmpty()) {
+      System.out.println("Pessoa eleitora já votou!");
+    }
 
+    short totalVotos = (short) cpfsComputados.size();
+
+    for (PessoaCandidata pessoaCandidata : pessoasCandidatas) {
+      short votosCandidato = (short) pessoaCandidata.getVotos();
+      String nomeCandidato = pessoaCandidata.getNome();
+      double porcentagemVotos = (double) votosCandidato / totalVotos * 100;
+      System.out.printf("\nNome: %s - %d votos ( %2f )\n", nomeCandidato, votosCandidato,
+          porcentagemVotos);
+    }
+    System.out.printf("Total de votos: %d\n", totalVotos);
   }
+
 }
