@@ -2,8 +2,15 @@ package com.betrybe.sistemadevotacao;
 
 public class PessoaEleitora extends Pessoa {
 
+  /**
+   * Classe que representa uma pessoa eleitora.
+   */
   private String cpf;
-  
+
+  public PessoaEleitora(String nome, String cpf) {
+    this.nome = nome;
+    this.cpf = cpf;
+  }
 
   public String getCpf() {
     return cpf;
@@ -13,8 +20,5 @@ public class PessoaEleitora extends Pessoa {
     this.cpf = cpf;
   }
 
-  public PessoaEleitora(String nome, String cpf) {
-    this.nome = nome;
-    this.cpf = cpf;
-  }
+
 }
