@@ -2,12 +2,13 @@ package com.betrybe.sistemadevotacao;
 
 public class PessoaCandidata extends Pessoa {
 
+
+  private int numero;
+  private int votos;
+  
   /**
    * Classe que representa uma pessoa candidata.
    */
-  private int numero;
-  private int votos;
-
   public PessoaCandidata(String nome, int numero) {
     this.nome = nome;
     this.numero = numero;

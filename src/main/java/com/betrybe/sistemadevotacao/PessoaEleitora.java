@@ -2,11 +2,12 @@ package com.betrybe.sistemadevotacao;
 
 public class PessoaEleitora extends Pessoa {
 
+
+  private String cpf;
+
   /**
    * Classe que representa uma pessoa eleitora.
    */
-  private String cpf;
-
   public PessoaEleitora(String nome, String cpf) {
     this.nome = nome;
     this.cpf = cpf;

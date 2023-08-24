@@ -36,6 +36,16 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
 
   @Override
   public void votar(String cpfPessoaEleitora, int numeroPessoaCandidata) {
+    for (String cpfComputado : cpfsComputados) {
+      if (cpfComputado.equals(cpfPessoaEleitora)) {
+        System.out.println("Pessoa eleitora já votou!");
+        return;
+      }
+    }
+
+    for (PessoaCandidata pessoaCandidata : pessoasCandidatas) {
+      
+    }
 
   }
 
